@@ -59,7 +59,7 @@ export class TransferenciasListComponent implements OnInit {
             label: firstTipo === 'ENTRADA' ? 'Conta Origem' : 'Conta Destino'
           },
           { key: 'valor', label: 'Valor' },
-          { key: 'dataHora', label: 'Data/Hora' },
+          { key: 'dataHora', label: 'Data' },
           { key: 'tipo', label: 'Tipo' },
         ];
         this.data = mapped;
