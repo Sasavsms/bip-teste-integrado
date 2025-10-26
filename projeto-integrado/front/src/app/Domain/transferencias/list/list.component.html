@@ -1,0 +1,15 @@
+<section class="container py-4">
+  <h2 class="mb-3">Transferências da Conta {{contaId}}</h2>
+
+  <button class="btn btn-sm btn-outline-primary mb-3" (click)="load(contaId!!)" [disabled]="loading">
+    @if (loading) {
+      Carregando...
+    } @else {
+      <mat-icon>autorenew</mat-icon>
+    }
+  </button>
+
+  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+  <app-list [columns]="columns" [data]="data"></app-list>
+</section>

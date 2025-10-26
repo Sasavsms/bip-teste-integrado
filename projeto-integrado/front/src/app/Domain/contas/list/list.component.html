@@ -1,0 +1,43 @@
+<section class="container py-4">
+  <h2 class="mb-3">Contas</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onTransferir()" class="d-flex align-items-end gap-2 mb-3" style="flex-wrap: wrap;">
+    <div class="form-group me-2">
+      <label for="contaOrigemId" class="form-label">Conta origem</label>
+      <select id="contaOrigemId" class="form-select" formControlName="origem">
+        <option [ngValue]="null">Selecione</option>
+        <option *ngFor="let c of data" [ngValue]="c.id">{{ c.id }}</option>
+      </select>
+    </div>
+
+    <div class="form-group me-2">
+      <label for="contaDestinoId" class="form-label">Conta destino</label>
+      <select id="contaDestinoId" class="form-select" formControlName="destino">
+        <option [ngValue]="null">Selecione</option>
+        <option *ngFor="let c of data" [ngValue]="c.id" [disabled]="c.id === form.get('origem')?.value">{{ c.id }}</option>
+      </select>
+    </div>
+
+    <div class="form-group me-2">
+      <label for="valor" class="form-label">Valor</label>
+      <input id="valor" type="number" step="0.01" class="form-control" formControlName="valor" placeholder="0,00" />
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Transferir</button>
+  </form>
+  <div *ngIf="form.errors?.['mesmaConta']" class="text-danger mt-2" style="margin-bottom: 10px">
+    A conta de origem e destino não podem ser iguais.
+  </div>
+
+  <button class="btn btn-sm btn-outline-primary mb-3" (click)="load()" [disabled]="loading">
+    @if (loading) {
+      Carregando...
+    } @else {
+      <mat-icon>autorenew</mat-icon>
+    }
+  </button>
+
+  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+  <app-list [columns]="columns" [data]="data" [hasActions]="true"></app-list>
+</section>
