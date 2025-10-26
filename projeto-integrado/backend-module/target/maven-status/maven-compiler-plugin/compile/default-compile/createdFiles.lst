@@ -1,0 +1,6 @@
+com\backend_module\repository\BeneficioRepository.class
+com\backend_module\service\BeneficioService.class
+com\backend_module\model\Beneficio.class
+com\backend_module\BackendModuleApplication.class
+com\backend_module\controller\BeneficioController.class
+com\backend_module\controller\TransferController.class
